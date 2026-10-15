@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import * as cheerio from "cheerio";
-import { CLAUDE_MODEL, parseClaudeJson } from "./claude-utils";
+import { CLAUDE_MODEL, extractClaudeText, parseClaudeJson } from "./claude-utils";
 import { safeFetch } from "./safe-fetch";
 
 export interface ScrapedProperty {
@@ -101,12 +101,13 @@ export async function scrapePropertyUrl(url: string): Promise<ScrapedProperty> {
   const client = new Anthropic();
   const response = await client.messages.create({
     model: CLAUDE_MODEL,
-    max_tokens: 1024,
+    max_tokens: 4096, // covers adaptive thinking as well as the JSON answer
+    output_config: { effort: "low" },
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: `URL: ${url}\n\n${pageText}` }],
   });
 
-  const raw = response.content[0].type === "text" ? response.content[0].text.trim() : "{}";
+  const raw = extractClaudeText(response);
   const d = parseClaudeJson(raw);
 
   const str = (v: unknown) => (v != null ? String(v) : undefined);

@@ -1,7 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { Property } from "@shared/schema";
 import type { MarketAnalysis } from "@shared/schema";
-import { CLAUDE_MODEL, parseClaudeJson } from "./claude-utils";
+import { CLAUDE_MODEL, extractClaudeText, parseClaudeJson } from "./claude-utils";
 import { safeFetch } from "./safe-fetch";
 
 const SYSTEM_PROMPT = `You are a real estate market analyst. You will receive detailed property information and, optionally, content scraped from a property listing advertisement. Analyze the property against current market conditions for its specific city and district.
@@ -103,12 +103,13 @@ export async function analyzePropertyMarket(property: Property): Promise<MarketA
   const client = new Anthropic();
   const response = await client.messages.create({
     model: CLAUDE_MODEL,
-    max_tokens: 1024,
+    max_tokens: 4096, // covers adaptive thinking as well as the JSON answer
+    output_config: { effort: "medium" },
     system: SYSTEM_PROMPT,
     messages: [{ role: "user", content: userMessage }],
   });
 
-  const raw = response.content[0].type === "text" ? response.content[0].text.trim() : "{}";
+  const raw = extractClaudeText(response);
   const d = parseClaudeJson(raw);
 
   const toRange = (v: unknown): { low: number; mid: number; high: number } => {
