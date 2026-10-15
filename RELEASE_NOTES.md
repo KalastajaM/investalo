@@ -1,3 +1,29 @@
+# Release Notes — v0.1.0-alpha.1 (2026-10-15)
+
+First public pre-release from the GitHub repository. Version numbering restarts at 0.1.0; the v1.x entries further down are the private pre-GitHub history and are kept for reference. Expect breaking changes before 1.0.
+
+## Changes
+
+### Claude Haiku 5.5
+- All Claude features (listing import, investment analysis, market analysis) now default to `claude-haiku-5-5`. `CLAUDE_MODEL` still overrides it, and must name a model that supports the effort parameter.
+- Responses are read by content type, so a leading thinking block no longer parses as an empty answer.
+- A safety refusal from the model now returns a clear 422 error instead of a JSON parse error, and truncated responses are detected on every Claude route.
+
+### Tailwind CSS 4
+- The frontend moved to Tailwind CSS 4 with the `@tailwindcss/vite` plugin. The look is unchanged apart from small spacing differences in forms; `npm audit` reports no advisories.
+
+### Local development
+- `.env` is now loaded by the server, the database scripts and `drizzle.config.ts`. Real environment variables keep precedence.
+
+## Bug Fixes
+
+- `npm run dev` no longer exits at startup when resolving the migrations folder.
+- The server now starts on macOS (removed the Linux-only `reusePort` listen option).
+
+---
+
+# Pre-release history (private, before the public repository)
+
 # Release Notes — v1.4.0 (2026-03-15)
 
 ## New Features
