@@ -43,7 +43,7 @@ export default function ReleaseNotes() {
                   <ul className="space-y-1.5">
                     {section.items.map((item, i) => (
                       <li key={i} className="text-sm flex gap-2">
-                        <span className="text-muted-foreground mt-0.5 flex-shrink-0">•</span>
+                        <span className="text-muted-foreground mt-0.5 shrink-0">•</span>
                         <span>{item}</span>
                       </li>
                     ))}

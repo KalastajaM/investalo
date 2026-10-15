@@ -54,7 +54,7 @@ export default function Landing() {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold tracking-tight text-foreground leading-tight md:leading-none">
                 Smart Property
                 <br />
                 Investment Analysis
@@ -85,7 +85,7 @@ export default function Landing() {
             </div>
             <div className="relative">
               <div className="relative rounded-md overflow-hidden ring-1 ring-border">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-10" />
                 <img
                   src={heroImage}
                   alt="Finnish apartment buildings"
@@ -100,7 +100,7 @@ export default function Landing() {
       <section className="py-16 md:py-24 bg-muted/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-sans font-bold text-foreground mb-4">
               Everything You Need for Property Analysis
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

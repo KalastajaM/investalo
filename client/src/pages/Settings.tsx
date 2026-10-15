@@ -571,7 +571,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleDevPasswordChange} className="space-y-4 max-w-sm">
-                <div className="space-y-2">
+                <div className="grid gap-2">
                   <label className="text-sm font-medium" htmlFor="dev-current-pw">Current password</label>
                   <Input
                     id="dev-current-pw"
@@ -581,7 +581,7 @@ export default function SettingsPage() {
                     placeholder="Current password"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="grid gap-2">
                   <label className="text-sm font-medium" htmlFor="dev-new-pw">New password</label>
                   <Input
                     id="dev-new-pw"

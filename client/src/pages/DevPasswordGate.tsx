@@ -48,7 +48,7 @@ export default function DevPasswordGate() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+            <div className="grid gap-2">
               <Label htmlFor="dev-password">Password</Label>
               <Input
                 id="dev-password"

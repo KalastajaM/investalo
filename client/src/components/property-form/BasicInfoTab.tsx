@@ -39,7 +39,7 @@ export function BasicInfoTab({ control, setValue, citysuggestion, areaSuggestion
               <FormControl><Input data-testid="input-city" placeholder="e.g. Helsinki" {...field} /></FormControl>
               {citysuggestion && (
                 <div className="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-400">
-                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  <AlertCircle className="w-3 h-3 shrink-0" />
                   <span>Did you mean </span>
                   <button
                     type="button"
@@ -66,7 +66,7 @@ export function BasicInfoTab({ control, setValue, citysuggestion, areaSuggestion
               <FormControl><Input data-testid="input-area" placeholder="e.g. Kallio" {...field} /></FormControl>
               {areaSuggestion && (
                 <div className="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-400">
-                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  <AlertCircle className="w-3 h-3 shrink-0" />
                   <span>Did you mean </span>
                   <button
                     type="button"

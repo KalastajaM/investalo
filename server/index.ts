@@ -1,3 +1,4 @@
+import "./env";
 import express, { type Request, Response, NextFunction } from "express";
 import { z } from "zod";
 import { registerRoutes } from "./routes";
@@ -103,7 +104,8 @@ app.use((req, res, next) => {
   // Run DB migrations before accepting traffic
   try {
     console.log("[startup] running migrations...");
-    const migrationsFolder = path.resolve(__dirname, "../migrations");
+    // Resolve from the working directory: __dirname is undefined when the dev server runs as ESM
+    const migrationsFolder = path.resolve(process.cwd(), "migrations");
     await migrate(db, { migrationsFolder });
     console.log("[startup] migrations complete");
   } catch (err: any) {
@@ -150,19 +152,9 @@ app.use((req, res, next) => {
     await setupVite(httpServer, app);
   }
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
+  // Serves both the API and the client. Hosting platforms set PORT.
   const port = parseInt(process.env.PORT || "5000", 10);
-  httpServer.listen(
-    {
-      port,
-      host: "0.0.0.0",
-      reusePort: true,
-    },
-    () => {
-      log(`serving on port ${port}`);
-    },
-  );
+  httpServer.listen({ port, host: "0.0.0.0" }, () => {
+    log(`serving on port ${port}`);
+  });
 })();

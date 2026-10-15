@@ -181,7 +181,7 @@ function PropertyDetailsContent({ id, property, settings }: { id: number; proper
         onClear={clearAnalysis}
       />
 
-      <Tabs defaultValue="charts" className="space-y-6">
+      <Tabs defaultValue="charts">
         <TabsList className="w-full md:w-auto grid grid-cols-3 md:grid-cols-6 md:inline-flex">
           <TabsTrigger value="charts" data-testid="tab-charts">Charts</TabsTrigger>
           <TabsTrigger value="sensitivity" data-testid="tab-sensitivity">Sensitivity</TabsTrigger>
@@ -191,27 +191,27 @@ function PropertyDetailsContent({ id, property, settings }: { id: number; proper
           <TabsTrigger value="details" data-testid="tab-details">Inputs</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="charts" className="space-y-6">
+        <TabsContent value="charts" className="mt-6 space-y-6">
           <SimulationChartsTab simResults={simResults} settings={settings} />
         </TabsContent>
 
-        <TabsContent value="sensitivity" className="space-y-6">
+        <TabsContent value="sensitivity" className="mt-6 space-y-6">
           <SensitivityAnalysisTab property={property} settings={settings} simResults={simResults} />
         </TabsContent>
 
-        <TabsContent value="breakeven" className="space-y-6">
+        <TabsContent value="breakeven" className="mt-6 space-y-6">
           <BreakEvenTab simResults={simResults} settings={settings} />
         </TabsContent>
 
-        <TabsContent value="table">
+        <TabsContent value="table" className="mt-6">
           <YearlyBreakdownTab simResults={simResults} />
         </TabsContent>
 
-        <TabsContent value="financials" className="space-y-6">
+        <TabsContent value="financials" className="mt-6 space-y-6">
           <FinancialSummaryTab simResults={simResults} property={property} settings={settings} />
         </TabsContent>
 
-        <TabsContent value="details">
+        <TabsContent value="details" className="mt-6">
           <PropertyInputsTab property={property} simResults={simResults} />
         </TabsContent>
       </Tabs>

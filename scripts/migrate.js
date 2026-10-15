@@ -11,6 +11,13 @@ import { migrate } from "drizzle-orm/node-postgres/migrator";
 import { fileURLToPath } from "url";
 import path from "path";
 
+// Load .env for local use; variables already set in the environment take precedence.
+try {
+  process.loadEnvFile();
+} catch (err) {
+  if (err.code !== "ENOENT") throw err;
+}
+
 const { Client } = pg;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

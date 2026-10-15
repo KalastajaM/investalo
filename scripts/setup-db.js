@@ -8,6 +8,13 @@
 
 import pg from "pg";
 
+// Load .env for local use; variables already set in the environment take precedence.
+try {
+  process.loadEnvFile();
+} catch (err) {
+  if (err.code !== "ENOENT") throw err;
+}
+
 const { Client } = pg;
 
 async function main() {
