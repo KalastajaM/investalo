@@ -10,6 +10,34 @@ export interface ReleaseNote {
 
 export const releases: ReleaseNote[] = [
   {
+    version: "0.1.0-alpha.1",
+    date: "2026-10-15",
+    title: "First Public Alpha",
+    sections: [
+      {
+        heading: "About This Release",
+        items: [
+          "First public pre-release. Version numbering restarts at 0.1.0; the v1.x entries below are the earlier private history. Expect breaking changes before 1.0",
+        ],
+      },
+      {
+        heading: "Changes",
+        items: [
+          "Claude features now use Claude Haiku 5.5 by default (CLAUDE_MODEL still overrides it), with clear errors for refused or truncated responses",
+          "Frontend migrated to Tailwind CSS 4",
+          ".env is now loaded for local development",
+        ],
+      },
+      {
+        heading: "Bug Fixes",
+        items: [
+          "npm run dev no longer crashes at startup",
+          "The server now starts on macOS",
+        ],
+      },
+    ],
+  },
+  {
     version: "1.3.0",
     date: "2026-03-10",
     title: "Claude Feature Flag & Dev Environment Protection",
