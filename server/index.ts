@@ -103,7 +103,8 @@ app.use((req, res, next) => {
   // Run DB migrations before accepting traffic
   try {
     console.log("[startup] running migrations...");
-    const migrationsFolder = path.resolve(__dirname, "../migrations");
+    // Resolve from the working directory: __dirname is undefined when the dev server runs as ESM
+    const migrationsFolder = path.resolve(process.cwd(), "migrations");
     await migrate(db, { migrationsFolder });
     console.log("[startup] migrations complete");
   } catch (err: any) {
