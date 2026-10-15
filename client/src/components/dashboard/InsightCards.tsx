@@ -106,7 +106,7 @@ export function InsightCards({
         <Card
           key={card.key}
           data-testid={card.testId}
-          className={`cursor-pointer transition-all ${selectedInsight === card.key ? "ring-2 ring-primary shadow-md" : "hover:shadow-sm"}`}
+          className={`cursor-pointer transition-all ${selectedInsight === card.key ? "ring-2 ring-primary shadow-md" : "hover:shadow-xs"}`}
           onClick={() => onSelectInsight(card.key)}
         >
           <CardContent className="py-4 flex items-start gap-3">

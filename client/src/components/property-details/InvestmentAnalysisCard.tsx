@@ -92,7 +92,7 @@ export function InvestmentAnalysisCard({
                   <ul className="space-y-1">
                     {analysis.positives.map((item, i) => (
                       <li key={i} className="text-sm flex items-start gap-1">
-                        <CheckCircle className="w-3 h-3 mt-0.5 text-green-600 flex-shrink-0" />
+                        <CheckCircle className="w-3 h-3 mt-0.5 text-green-600 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -105,7 +105,7 @@ export function InvestmentAnalysisCard({
                   <ul className="space-y-1">
                     {analysis.flags.map((item, i) => (
                       <li key={i} className="text-sm flex items-start gap-1">
-                        <AlertTriangle className="w-3 h-3 mt-0.5 text-amber-500 flex-shrink-0" />
+                        <AlertTriangle className="w-3 h-3 mt-0.5 text-amber-500 shrink-0" />
                         {item}
                       </li>
                     ))}

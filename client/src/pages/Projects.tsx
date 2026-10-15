@@ -240,7 +240,7 @@ export default function ProjectsPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 mt-4">
-            <div className="space-y-2">
+            <div className="grid gap-2">
               <Label htmlFor="project-name">Project Name</Label>
               <Input
                 id="project-name"
@@ -250,7 +250,7 @@ export default function ProjectsPage() {
                 onChange={(e) => setFormName(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
+            <div className="grid gap-2">
               <Label htmlFor="project-description">Description (optional)</Label>
               <Textarea
                 id="project-description"

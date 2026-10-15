@@ -13,7 +13,7 @@ export function UrlImportPanel({ importUrl, onImportUrlChange, onImport, isImpor
   return (
     <div className="rounded-md border bg-muted/30 p-4 space-y-3 mt-4">
       <div className="flex items-center gap-2">
-        <Link className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+        <Link className="w-4 h-4 text-muted-foreground shrink-0" />
         <span className="text-sm font-medium">Import from listing URL</span>
         <span className="text-xs text-muted-foreground">(oikotie.fi, etuovi.com, or other)</span>
       </div>
