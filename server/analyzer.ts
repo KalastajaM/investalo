@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 import * as fs from "fs";
 import * as path from "path";
 import { extractPageText } from "./scraper";
-import { CLAUDE_MODEL, parseClaudeJson } from "./claude-utils";
+import { CLAUDE_MODEL, extractClaudeText, parseClaudeJson } from "./claude-utils";
 import { AppError } from "./errors";
 import { safeFetch } from "./safe-fetch";
 
@@ -89,18 +89,13 @@ export async function analyzePropertyInvestment(url: string): Promise<Investment
   const client = new Anthropic();
   const response = await client.messages.create({
     model: CLAUDE_MODEL,
-    max_tokens: 2048,
+    max_tokens: 8192, // covers adaptive thinking as well as the JSON answer
+    output_config: { effort: "medium" },
     system: SYSTEM_PROMPT_TEMPLATE(guardrailsText),
     messages: [{ role: "user", content: `URL: ${url}\n\n${pageText}` }],
   });
 
-  if (response.stop_reason === "max_tokens") {
-    throw new Error(
-      "The property listing is too long to analyze. Try a listing with less text.",
-    );
-  }
-
-  const raw = response.content[0].type === "text" ? response.content[0].text.trim() : "{}";
+  const raw = extractClaudeText(response);
   const d = parseClaudeJson(raw);
 
   const verdict = d.verdict === "good" || d.verdict === "poor" ? d.verdict : "caution";
